@@ -1,0 +1,67 @@
+Week 8 query 1 
+
+SELECT titles.title Titles, COUNT(titles.emp_no) Count 
+FROM titles 
+INNER JOIN employees ON employees.emp_no = titles.emp_no
+WHERE employees.birth_date > '1965-01-01'
+GROUP BY titles.title;
+
+Senior Staff	    612
+Staff	            703
+Technique Leader    95
+Senior Engineer	    589
+Engineer	        657
+Assistant Engineer	97
+
+Week 8 query 2
+
+SELECT AVG(salary) Average_Salary, titles.title Title FROM salaries 
+INNER JOIN titles ON titles.emp_no = salaries.emp_no 
+GROUP BY titles.title;
+
+Average_Salary  Title
+60543.2191	    Senior Engineer
+69308.7124	    Staff
+59508.0751	    Engineer
+70470.5013	    Senior Staff
+59304.9863	    Assistant Engineer
+59294.3742	    Technique Leader
+66924.2706	    Manager
+
+Week 8 query 3
+
+SELECT sum(salary) Salary_Sum, departments.dept_name, salaries.from_date, salaries.to_date     
+FROM salaries    
+INNER JOIN dept_emp ON dept_emp.emp_no = salaries.emp_no     
+INNER JOIN departments ON departments.dept_no = dept_emp.dept_no  
+GROUP BY dept_name 
+HAVING dept_name = 'Marketing' 
+and salaries.from_date >= '1990-01-01' and salaries.to_date <= '1992-12-31';
+
+SELECT sum(salary) Salary_Sum, departments.dept_name, salaries.from_date, salaries.to_date     
+ FROM salaries    
+ INNER JOIN dept_emp ON dept_emp.emp_no = salaries.emp_no     
+ INNER JOIN departments ON departments.dept_no = dept_emp.dept_no  
+ GROUP BY dept_name 
+ HAVING dept_name = 'Marketing' 
+ and salaries.from_date >= '1990-01-01' and salaries.to_date <= '1992-12-31'
+ LIMIT 0, 50	0 row(s) returned	7.265 sec / 0.000 sec
+ 
+ 
+ SELECT sum(salary) Salary_Sum, departments.dept_name, salaries.from_date, salaries.to_date     
+FROM salaries    
+INNER JOIN dept_emp ON dept_emp.emp_no = salaries.emp_no     
+INNER JOIN departments ON departments.dept_no = dept_emp.dept_no  
+GROUP BY dept_name 
+HAVING dept_name = 'Marketing';
+
+SELECT sum(salary) Salary_Sum, departments.dept_name, salaries.from_date, salaries.to_date     
+FROM salaries    
+INNER JOIN dept_emp ON dept_emp.emp_no = salaries.emp_no     
+INNER JOIN departments ON departments.dept_no = dept_emp.dept_no  
+GROUP BY dept_name 
+HAVING dept_name = 'Marketing';
+Salary      dept_name   from_date   to_date
+13725425266	Marketing	1993-08-03	1994-08-03
+
+My data during the date range the home work requested was deleted.  
